@@ -142,7 +142,7 @@ def main():
     )
 
     cifar_classifier.train(input_fn=train_input_fn, steps=30000)
-    
+
     eval_input_fn = tf.estimator.inputs.numpy_input_fn(
         x={"x": eval_data},
         y = eval_labels,
@@ -154,4 +154,5 @@ def main():
     print(eval_result)
 
 if __name__ == '__main__':
-    main()
+    with tf.device('device:GPU:3') :
+        main()
