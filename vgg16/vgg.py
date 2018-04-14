@@ -141,6 +141,8 @@ def main():
         shuffle=True
     )
 
+    cifar_classifier.train(input_fn=train_input_fn, steps=30000)
+    
     eval_input_fn = tf.estimator.inputs.numpy_input_fn(
         x={"x": eval_data},
         y = eval_labels,
@@ -148,7 +150,6 @@ def main():
         shuffle=False
     )
 
-    cifar_classifier.train(input_fn=train_input_fn, steps=30000)
     eval_result = cifar_classifier.evaluate(input_fn=eval_input_fn)
     print(eval_result)
 
